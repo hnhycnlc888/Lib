@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<description>项目Spring基础环境配置</description>
+	
+	<!-- 按需要加载Core包配置好的组件（在Core包内，以component-开头的xml都是组件，按需引用） -->
+	
+	<!-- spring基础环境配置 -->
+	<import resource="classpath*:config/spring/component-Context.xml"/>
+	<!-- 项目日志文件输出 -->
+	<import resource="classpath*:config/spring/component-Log.xml"/>
+	<!-- 数据库连接池配置 -->
+	<import resource="classpath*:config/spring/component-Datasource.xml"/>
+	<!-- Mybatis与Spring整合配置 -->
+	<import resource="classpath*:config/spring/component-Mybatis.xml"/>
+	<!-- Spring事务 -->
+	<import resource="classpath*:config/spring/component-TranscationManager.xml"/>
+	
+	<!-- 读取属性配置文件 -->
+	<!-- 在spring配置文件中，如果用到${xxx}之类的占位符，就需要读取properties文件，例如数据源的配置文件中就有这样的配置 -->
+	<bean id="sysProperty" class="cn.richinfo.core.prop.SysProperty">
+		<property name="fileEncoding" value="UTF-8"/>
+		<property name="locations">
+			<!-- 可以读取多个配置文件 -->
+			<list>
+				<value>classpath:system.properties</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

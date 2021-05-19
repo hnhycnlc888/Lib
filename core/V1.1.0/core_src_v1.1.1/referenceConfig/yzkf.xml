@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<yzkf> 
+ <!-- 
+    测试发布
+ 	linux: /home/yzkf/www/lib/libjsp/v4.0.0/  
+    本地开发	
+ 	windows: c:\win139\v4.0.0\
+ 	classpath:c:\win139\v4.0.0\  /home/yzkf/mobilebill/system
+  -->
+ <!--
+    数据库连接配置
+    path是配置文件所在的路径。
+    version是指配置文件的版本
+  -->
+  <dbconfig>
+    <path>D:\workSpace\richinfo\yzkfLib\win139\v4.0.0\db.xml</path>
+    <version>V4.0.0</version>
+  </dbconfig>
+  <!--
+    接口配置
+    path是配置文件所在的路径。
+    version是指配置文件的版本
+  -->
+  <apiconfig>
+    <path>D:\workSpace\richinfo\yzkfLib\win139\v4.0.0\api.xml</path>
+    <version>V4.0.0</version>
+  </apiconfig>
+  <!--
+    应用程序配置
+    path是配置文件所在的路径。
+    version是指配置文件的版本
+  -->
+  <appconfig>
+  	<path>D:\workSpace\richinfo\yzkfLib\win139\v4.0.0\app.xml</path>
+  	<version>V4.0.0</version>
+  </appconfig>
+  <!--
+    邮件配置
+    path是配置文件所在的路径。
+    version是指配置文件的版本
+  -->
+  <mailconfig>
+    <path>D:\workSpace\richinfo\yzkfLib\win139\v4.0.0\mail.xml</path>
+    <version>V4.0.0</version>
+  </mailconfig>
+  <!--
+    正式表达式配置
+    path是配置文件所在的路径。
+    version是指配置文件的版本
+  -->
+  <regexconfig>
+    <path>D:\workSpace\richinfo\yzkfLib\win139\v4.0.0\regex.xml</path>
+    <version>V4.0.0</version>
+  </regexconfig>
+  <!--
+    MemCached配置
+    path是配置文件所在的路径。
+    version是指配置文件的版本
+  -->
+  <memcachedconfig>
+    <path>D:\workSpace\richinfo\yzkfLib\win139\v4.0.0\memcached.xml</path>
+    <version>V4.0.0</version>
+  </memcachedconfig>
+  <!--
+    处理结果提示语配置
+    path是配置文件所在的路径。
+    version是指配置文件的版本
+  -->
+  <enumconfig>
+  	<path>D:\workSpace\richinfo\yzkfLib\win139\v4.0.0\enum.xml</path>
+  	<version>V4.0.0</version>
+  </enumconfig>  
+  
+  <!--
+    Log4j配置路径
+    path是配置文件所在的路径。
+    version是指配置文件的版本
+  -->
+  <!-- <log4jconfig>
+  	<path>D:\workSpace\richinfo\yzkfLib\win139\v4.0.0\log4j.properties</path>
+  	<version>V4.0.0</version>
+  </log4jconfig> -->
+  
+  <log4jFile>
+  	<!-- 生产、灰度、测试：/home/yzkf/logs/applog/${projectCode}/log.txt  ${projectCode}是占位符，该占位符将被替换为project.xml中的code（活动/项目编号）  -->
+  	<path>d:\win139\log\java\${projectCode}\log.txt</path>
+  	<version>V4.0.0</version>
+  </log4jFile>
+</yzkf>

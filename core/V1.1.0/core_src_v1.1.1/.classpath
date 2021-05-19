@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="core_src"/>
+	<classpathentry kind="src" path="log4jdbc_src"/>
+	<classpathentry kind="src" path="yzkf_src"/>
+	<classpathentry kind="src" path="login_src"/>
+	<classpathentry kind="lib" path="/Lib/aop/aopalliance.jar"/>
+	<classpathentry kind="lib" path="/Lib/aop/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="/Lib/aop/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="/Lib/cache/Memcached-Java-Client-3.0.0.jar"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons-beanutils-1.9.2.jar"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons-dbutils-1.5.jar"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons-lang-2.3.jar"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons-logging.jar"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons-pool-1.5.6.jar"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons.io-1.4.0.jar"/>
+	<classpathentry kind="lib" path="/Lib/j2ee/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="/Lib/job/quartz-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/Lib/json/fastjson-1.2.6.jar"/>
+	<classpathentry kind="lib" path="/Lib/mybatis/mybatis-3.3.0.jar"/>
+	<classpathentry kind="lib" path="/Lib/mybatis/mybatis-spring-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/Lib/other/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-aop-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-aspects-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-beans-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-context-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-context-support-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-core-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-expression-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-jdbc-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-orm-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-test-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-tx-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-web-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring/spring-webmvc-4.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/test/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="/Lib/xml/dom4j-1.6.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/Lib/commons/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/Lib/dbDriver/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="lib" path="/Lib/dbDriver/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="/Lib/log/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/Lib/log/slf4j-api-1.7.13.jar"/>
+	<classpathentry kind="lib" path="/Lib/log/slf4j-log4j12-1.7.13.jar"/>
+	<classpathentry kind="lib" path="/Lib/mail/javax.mail.jar"/>
+	<classpathentry kind="lib" path="/Lib/cache/ehcache-core-2.6.9.jar"/>
+	<classpathentry kind="lib" path="/Lib/other/user-agent-utils-3.12.jar"/>
+	<classpathentry kind="lib" path="/Lib/dbPool/druid-0.2.8.jar"/>
+	<classpathentry kind="lib" path="/Lib/j2ee/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<description>Mybatis与Spring整合配置-oracle</description>
+	
+	<!-- 扩展Mybatis的分页-插件 -->
+	<bean id="mybatisPageInterceptor" class="cn.richinfo.core.mybatis.extend.plugin.PageInterceptor">
+		<property name="dialect">
+			<bean class="cn.richinfo.core.mybatis.extend.dialect.OracleDialect" />
+		</property>
+	</bean>
+	
+	<bean id="oracleTimeStampTypeHandler" class="cn.richinfo.core.mybatis.extend.vo.OracleTimeStampTypeHandler" />
+	
+	<!-- 整合Spring与Mybatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:config/mybatis/mybatis_config.xml" />
+		<property name="mapperLocations" value="classpath*:cn/richinfo/**/sqlmap/*_Mapper.xml" />
+		<property name="typeHandlers">
+			<array>
+				<ref local="oracleTimeStampTypeHandler"/>
+			</array>
+		</property>
+		<property name="plugins">
+			<array>
+				<ref local="mybatisPageInterceptor"/>
+			</array>
+		</property>
+	</bean>
+	
+	<!-- 创建MybatisDao对象，该对象增加了一些常用的方法 -->
+	<bean id="MybaitsDao" class="cn.richinfo.core.mybatis.extend.dao.MybaitsDao">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- http://blog.csdn.net/hupanfeng/article/details/9265341
+		 http://duanhengbin.iteye.com/blog/1998017
+	-->
+	
+</beans>

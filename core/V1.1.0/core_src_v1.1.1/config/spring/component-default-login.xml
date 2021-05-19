@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<description>默认登录</description>
+	
+	<bean id="ValidateHandler" class="cn.richinfo.login.impl.handler.ValidateHandler" />
+	<bean id="TimeControllHandler" class="cn.richinfo.login.impl.handler.TimeControllHandler" />
+	<bean id="ProvAreaHandler" class="cn.richinfo.login.impl.handler.ProvAreaHandler" />
+	<bean id="MysqlLoginDbLogHandler" class="cn.richinfo.login.impl.handler.MysqlLoginDbLogHandler">
+		<property name="mybatisDao" ref="MybaitsDao" />
+	</bean>
+	<bean id="MemcacheHandler" class="cn.richinfo.login.impl.handler.MemcacheHandler" />
+	<bean id="ActivityLogHandler" class="cn.richinfo.login.impl.handler.ActivityLogHandler" />
+	
+	<bean id="Login" class="cn.richinfo.login.impl.Login">
+		<property name="loginBeforeHandlerList">
+			<list value-type="cn.richinfo.login.abatrace.ILoginBeforeHandler">
+				<ref local="ValidateHandler"/>
+				<ref local="TimeControllHandler"/>
+			</list>
+		</property>
+		<property name="loginPostHandlerList">
+			<list value-type="cn.richinfo.login.abatrace.ILoginPostHandler">
+				<ref local="MysqlLoginDbLogHandler"/>
+				<ref local="MemcacheHandler"/>
+			</list>
+		</property>
+		<property name="getUserInfoBeforeHandlerList">
+			<list value-type="cn.richinfo.login.abatrace.IGetUserInfoBeforeHandler">
+				<ref local="TimeControllHandler"/>
+			</list>
+		</property>
+		<property name="getUserInfoPostHandlerList">
+			<list value-type="cn.richinfo.login.abatrace.IGetUserInfoPostHandler">
+				<ref local="MysqlLoginDbLogHandler"/>
+				<ref local="MemcacheHandler"/>
+			</list>
+		</property>
+	</bean>
+</beans>

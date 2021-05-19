@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Yzkf">
+	
+	<parameterMap type="java.util.Map" id="loginRecParam">
+		<parameter property="i_usermobile" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_alias" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_usealiaslogin" mode="IN" jdbcType="INTEGER"/>
+		<parameter property="i_provcode" mode="IN" jdbcType="INTEGER"/>
+		<parameter property="i_areacode" mode="IN" jdbcType="INTEGER"/>
+		<parameter property="i_cardtype" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_comefrom" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_projectno" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_ip" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_browser" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_yearmonth" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_datestring" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_clientinfo" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_reserve" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="o_result" mode="OUT" jdbcType="INTEGER"/>
+		<parameter property="o_loginid" mode="OUT" jdbcType="BIGINT"/>
+	</parameterMap>
+	
+	<select id="addLoginRec" statementType="CALLABLE" parameterMap="loginRecParam">
+		{ call ${procedureName} (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }
+	</select>
+	
+	<parameterMap type="java.util.Map" id="smsVerifyCreateParam">
+		<parameter property="i_mobile" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_randomcode" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="i_expiresec" mode="IN" jdbcType="INTEGER"/>
+		<parameter property="I_IP" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="O_Return" mode="OUT" jdbcType="VARCHAR" javaType="String"/>
+	</parameterMap>
+	
+	<select id="smsVerifyCreateCode" statementType="CALLABLE" parameterMap="smsVerifyCreateParam">
+		{ call PKG_Y_PUBLIC_SMSVERIFY.CreateCode(?,?,?,?,?) }
+	</select>
+</mapper>

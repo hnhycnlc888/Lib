@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BaseMbFramework">
+	<insert id="insertDynamicTable" parameterType="Map">
+		insert /*+append*/ into ${table_name}
+		<foreach collection="table_columns" open="(" close=")" separator="," item="column">${column.colName}</foreach>
+		values
+		<foreach collection="table_columns" open="(" close=")" separator="," item="column">
+			<if test="column.sqlValue != null">( ${column.sqlValue} )</if>
+			<if test="column.sqlValue == null">#{column.value}</if>
+		</foreach>
+	</insert>
+	
+	<update id="updateDynamicTable" parameterType="Map">
+		update ${table_name}
+		<set>
+			<foreach collection="table_columns" separator="," item="column">
+				${column.colName} = 
+				<if test="column.sqlValue != null">( ${column.sqlValue} )</if>
+				<if test="column.sqlValue == null">#{column.value}</if>
+			</foreach>
+		</set>
+		<where>
+			<if test="primary_key_column_name != null">
+				${primary_key_column_name} = #{primary_key_column_value}
+			</if>
+			<if test="primary_key_column_name == null">1 = 2</if>
+		</where>
+	</update>
+	
+	<select id="executeSql" parameterType="Map" resultType="ResultMap" useCache="false">
+		${sql}
+	</select>
+	
+	<delete id="deleteDynTable" parameterType="Map">
+		delete from ${table_name}
+		<where>
+			<if test="primary_key_column_valuelist != null">
+				${primary_key_column_name}
+				<foreach collection="primary_key_column_valuelist" open=" in (" close=")" separator="," item="value">#{value}</foreach>
+			</if>
+			<if test="primary_key_column_valuelist == null"> AND 1 = 2 </if>
+		</where> 
+	</delete>
+	
+	<delete id="deleteSql" parameterType="map">
+		${sql}
+	</delete>
+	
+</mapper>

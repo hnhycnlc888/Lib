@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+		
+	<description>Spring事务</description>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 配置事物层切点 -->
+	<aop:config proxy-target-class="true">
+		<aop:advisor pointcut="execution(* cn..*.bo.*BO.*(..))" advice-ref="txAdvice" />
+	</aop:config>
+	
+	<!-- 配置事物通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- <tx:method name="find*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="query*" read-only="true" /> -->
+			<tx:method name="*" propagation="REQUIRED" read-only="false"
+				rollback-for="RunTimeException,Exception" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 支持 @Transactional 标记 ,系统默认管理bo.*BO的事务，其它特殊事务需求请在代码中控制，并注意包命名规则和事务名称 -->
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
+	
+</beans>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	<display-name>demo</display-name>
+	
+	<!-- 默认首页，(非必需) -->
+	<welcome-file-list>
+		<welcome-file></welcome-file>
+	</welcome-file-list>
+	
+	<!-- spring配置文件扫描，扫描config/spring/下，以application-开头的xml，(必需，且配置内容无需改动) -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:config/spring/application-*.xml
+		</param-value>
+	</context-param>
+	
+	<!-- 过滤器，自动对拦截的请求设置编码，(必需，且配置内容无需改动) -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	
+	<!-- 拦截指定后缀的请求，(必需，可增加其他请求的拦截) -->
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	
+	<!-- 监听器，服务器启动时，触发spring容器加载，(必需，且配置内容无需改动) -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- 监听器，为spring添加web的scope类型，(必需，且配置内容无需改动) -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<!-- 监听器，垃圾清理，防止内存泄漏，(必需，且配置内容无需改动) -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
+	<!-- 启用spring MVC，其中config/spring/springMVC.xml
+		是spring mvc的基础配置文件，并额外扫描以“springMVC-”开头的xml配置文件，(必需，且配置内容无需改动) -->
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				classpath*:config/spring/springMVC.xml,
+				classpath*:config/spring/springMVC-*.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- 映射的url后缀以*.do的请求到spring mvc中的servlet处理，(必需，且配置内容无需改动) -->
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

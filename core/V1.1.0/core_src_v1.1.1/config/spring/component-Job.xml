@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<description>定时任务管理器</description>
+	<bean id="quartzManager" class="cn.richinfo.core.job.QuartzManager" init-method="init" destroy-method="destory">
+		<property name="groupName" value="${quartz.job.groupName}" />
+		<property name="isRunJob" value="${quartz.job.isRunJob}" />
+		<property name="jobConfigResources" value="classpath*:cn/richinfo/**/tpl/job/*_JobTpl.xml" />
+	</bean>
+	
+</beans>

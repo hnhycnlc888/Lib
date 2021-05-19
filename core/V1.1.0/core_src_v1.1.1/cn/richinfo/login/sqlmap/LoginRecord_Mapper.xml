@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LoginRecord">
+
+
+	<insert id="loginInsert" parameterType="map" useGeneratedKeys="true" keyProperty="ID">
+	INSERT T_Y_CN201511A1_LOGIN 
+	(PASSPORTID, LOGINTIME, USERMOBILE, ALIAS, USEALIASLOGIN, PROVCODE, AREACODE, CARDTYPE, COMEFROM, PROJECTNO, IP, BROWSER, YEARMONTH, DATESTRING, RECORDTIME, CLIENTINFO, RESERVE)
+	VALUES
+	(#{PASSPORTID}, #{LOGINTIME}, #{USERMOBILE}, #{ALIAS}, #{USEALIASLOGIN}, #{PROVCODE}, #{AREACODE}, #{CARDTYPE}, #{COMEFROM}, #{PROJECTNO}, #{IP}, #{BROWSER}, #{YEARMONTH}, #{DATESTRING}, #{RECORDTIME}, #{CLIENTINFO}, #{RESERVE})
+	</insert>
+	
+	<insert id="userInfoInsert" parameterType="map" useGeneratedKeys="true" keyProperty="ID">
+	INSERT T_Y_CN201511A1_USERINFO 
+	(PASSPORTID, USERMOBILE, ALIAS, CREATETIME, LASTTIME, ACTTIMES)
+	VALUES
+	(#{PASSPORTID}, #{USERMOBILE}, #{ALIAS}, #{CREATETIME}, #{LASTTIME}, #{ACTTIMES})
+	</insert>
+	
+	<select id="userInfoSelect" parameterType="map" resultType="int">
+		SELECT COUNT(1)
+		  FROM T_Y_CN201511A1_USERINFO
+		<where>
+			<if test="PASSPORTID != null"> AND PASSPORTID = #{PASSPORTID} </if>
+			<if test="PASSPORTID == null">
+				AND 1 = 2
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateUserInfo">
+		UPDATE T_Y_CN201511A1_USERINFO
+		<set>
+			<if test="USERMOBILE != null">
+				USERMOBILE = #{USERMOBILE},
+			</if>
+			<if test="ALIAS != null">
+				ALIAS = #{ALIAS},
+			</if>
+			<if test="CREATETIME != null">
+				CREATETIME = #{CREATETIME},
+			</if>
+			<if test="LASTTIME != null">
+				LASTTIME = #{LASTTIME},
+			</if>
+			<if test="ACTTIMES != null">
+				ACTTIMES = ACTTIMES + #{ACTTIMES},
+			</if>
+		</set>
+		<where>
+			<if	test="@cn.richinfo.core.mybatis.extend.utils.OgnlUtils@isNotEmpty(PASSPORTID)"> AND PASSPORTID = #{PASSPORTID} </if>
+			<if test="@cn.richinfo.core.mybatis.extend.utils.OgnlUtils@isEmpty(PASSPORTID)">
+		 		AND 1 = 2
+		 	</if>
+		</where>
+	</update>
+	
+</mapper>

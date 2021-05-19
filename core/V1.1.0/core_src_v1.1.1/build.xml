@@ -1,0 +1,13 @@
+<project name="a" basedir="." default="main">
+	<property name="src.dir" value="src"></property>
+	<property name="build.dir" value="build"></property>
+	<property name="classes.dir" value="bin"></property>
+	
+	<target name="jar">
+		<jar destfile="core.jar" basedir="${classes.dir}">
+		</jar>
+	</target>
+	
+	<target name="main" depends="jar"/>
+	
+</project>

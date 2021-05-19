@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+	
+		<layout class="org.apache.log4j.PatternLayout">     
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%p] %c - %m%n" />     
+		</layout>
+		
+	</appender>
+	
+	<logger name="org.springframework">
+		<level value="INFO" />
+	</logger>
+	
+	<logger name="com.alibaba.druid.pool" >
+		<level value="INFO" />
+	</logger>
+	
+	
+	<logger name="org.directwebremoting" >
+		<level value="INFO" />
+	</logger>
+	<logger name="org.directwebremoting.log.accessLog" >
+		<level value="INFO" />
+	</logger>
+	
+	<logger name="org.mybatis" >
+		<level value="INFO" />
+	</logger>
+	<logger name="mybatis.mapper" >
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.quartz" >
+		<level value="WARN" />
+	</logger>
+	
+	
+	<logger name="java.sql.Connection" >
+		<level value="WARN" />
+	</logger>
+	<logger name="java.sql.Statement" >
+		<level value="DEBUG" />
+	</logger>
+	<logger name="java.sql.PreparedStatement" >
+		<level value="DEBUG" />
+	</logger>
+	<logger name="java.sql.ResultSet" >
+		<level value="DEBUG" />
+	</logger>
+	
+	<logger name="log4jdbc.debug">
+		<level value="INFO" />
+	</logger>
+	<logger name="jdbc.audit">
+		<level value="OFF" />
+	</logger>
+	<logger name="jdbc.sqlonly">
+		<level value="INFO" />
+	</logger>
+	<logger name="jdbc.sqltiming">
+		<level value="INFO" />
+	</logger>
+	<logger name="jdbc.resultset">
+		<level value="WARN" />
+	</logger>
+	<logger name="jdbc.connection">
+		<level value="INFO" />
+	</logger>
+	
+	
+	<root>
+		<priority value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+	
+</log4j:configuration>
